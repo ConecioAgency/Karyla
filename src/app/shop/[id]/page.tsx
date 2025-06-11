@@ -5,12 +5,12 @@ import { products, formatPrice } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { Heart, Star, ShoppingCart, Share2, Eye } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Heart, ShoppingCart, Eye } from "lucide-react";
 import { useMiniCartDrawer } from "@/components/layout/MiniCartDrawer";
 import { useToast } from "@/components/layout/MiniCartDrawer";
-import { Tabs, Tab } from "@/components/ui/tabs";
 import { AccordionItem } from "@/components/ui/Accordion";
+import Image from "next/image";
 
 const SIZES = ["Taille unique", "S", "M", "L"];
 const COLORS = ["Argent rhodié", "Doré"];
@@ -40,6 +40,8 @@ export default function ProductDetail() {
   const [navbarHeight, setNavbarHeight] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [previewImage, setPreviewImage] = useState<string|null>(null);
+  const [selectedImage, setSelectedImage] = useState(product?.images?.[0] || product?.image || '');
+  const [wishlist, setWishlist] = useState<string[]>([]);
 
   useEffect(() => {
     setIsClient(true);
@@ -60,15 +62,12 @@ export default function ProductDetail() {
     );
   }
 
-  // Dépendants de product
-  const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image);
-  const [wishlist, setWishlist] = useState<string[]>([]);
-  const isWishlisted = wishlist.includes(product.id);
+  const isWishlisted = wishlist.includes(product?.id || '');
 
   // Suggestions (hors produit courant)
   const suggestions = products.filter((p) => p.id !== id).slice(0, 6);
 
-  const showSizeSelector = product.category === "bague" || product.category === "ensemble";
+  const showSizeSelector = product?.category === "bague" || product?.category === "ensemble";
 
   // Badge de stock
   const getStockBadge = (status?: string) => {
@@ -86,9 +85,9 @@ export default function ProductDetail() {
 
   // Préparer les infos techniques pour le tableau
   const infosTechniques = [
-    { label: "Référence", value: product.reference },
-    { label: "Catégorie", value: product.category },
-    { label: "Matière", value: product.material === 'silver' ? 'Argent rhodié' : 'Cuivre doré' },
+    { label: "Référence", value: product?.reference },
+    { label: "Catégorie", value: product?.category },
+    { label: "Matière", value: product?.material === 'silver' ? 'Argent rhodié' : 'Cuivre doré' },
     // Ajouter ici d'autres propriétés si besoin (ex: poids, dimensions, couleur, etc.)
   ];
 
@@ -100,11 +99,12 @@ export default function ProductDetail() {
       >
         {/* Galerie d'images */}
         <div className="w-full md:w-1/2 flex flex-col items-center sticky top-16 self-start">
-          <div className="relative w-full max-w-xs">
-            <img
+          <div className="relative w-full max-w-xs h-[400px]">
+            <Image
               src={selectedImage}
               alt={product.name}
-              className="w-full h-auto object-cover rounded-xl shadow-lg border-2 border-white"
+              fill
+              className="object-cover rounded-xl shadow-lg border-2 border-white"
             />
             <button
               aria-label="Ajouter à la wishlist"
@@ -122,7 +122,7 @@ export default function ProductDetail() {
                   onClick={() => setSelectedImage(img)}
                   className={`w-10 h-10 rounded border-2 ${selectedImage === img ? 'border-gold-500' : 'border-gray-200'} overflow-hidden focus:outline-none`}
                 >
-                  <img src={img} alt={product.name + ' miniature ' + (idx+1)} className="w-full h-full object-cover" />
+                  <Image src={img} alt={product.name + ' miniature ' + (idx+1)} className="w-full h-full object-cover" width={40} height={40} />
                 </button>
               ))}
             </div>
@@ -256,10 +256,11 @@ export default function ProductDetail() {
         <div className="flex gap-4 overflow-x-auto pb-3 scrollbar-thin scrollbar-thumb-gold-300">
           {suggestions.map((sugg) => (
             <Link key={sugg.id} href={`/shop/${sugg.id}`} className="relative group min-w-[180px] max-w-[180px] bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 overflow-hidden cursor-pointer">
-              <img
+              <Image
                 src={sugg.image}
                 alt={sugg.name}
                 className="w-full h-32 object-cover rounded-t-lg"
+                fill
               />
               <div className="p-3">
                 <h3 className="font-semibold text-gray-900 text-base mb-1 truncate">{sugg.name}</h3>
@@ -290,7 +291,7 @@ export default function ProductDetail() {
               <button className="absolute top-2 right-2 p-2 rounded-full bg-gray-100 hover:bg-gray-200" onClick={() => setPreviewImage(null)}>
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
               </button>
-              <img src={previewImage} alt="Aperçu grand format" className="w-full h-auto max-h-[70vh] object-contain rounded-lg" />
+              <Image src={previewImage} alt="Aperçu grand format" className="w-full h-auto max-h-[70vh] object-contain rounded-lg" fill />
             </div>
           </div>
         )}

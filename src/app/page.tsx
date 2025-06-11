@@ -14,6 +14,7 @@ import { useState } from "react";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { AccordionItemPremium } from "@/components/ui/AccordionItemPremium";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 // Sélectionner les meilleures ventes et les nouveautés
 const bestSellers = products.filter(product => product.isBestSeller).slice(0, 3);
@@ -95,9 +96,10 @@ export default function Home() {
               >
                 <Link href={cat.href} className="block h-full w-full">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
-                  <img
+                  <Image
                     src={cat.image}
                     alt={cat.label}
+                    fill
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -130,10 +132,11 @@ export default function Home() {
               >
                 <Link href={`/shop/${product.id}`} className="block">
                   <div className="relative overflow-hidden rounded-lg">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {product.isNew && (
@@ -209,10 +212,11 @@ export default function Home() {
               >
                 <Link href={`/shop/${product.id}`} className="block">
                   <div className="relative overflow-hidden rounded-lg">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {product.isNew && (
@@ -341,7 +345,7 @@ export default function Home() {
             <button className="absolute top-2 right-2 p-2 rounded-full bg-gray-100 hover:bg-gray-200" onClick={() => setPreviewImage(null)}>
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
             </button>
-            <img src={previewImage} alt="Aperçu grand format" className="w-full h-auto max-h-[70vh] object-contain rounded-lg" />
+            <Image src={previewImage} alt="Aperçu grand format" className="w-full h-auto max-h-[70vh] object-contain rounded-lg" fill />
           </div>
         </div>
       )}

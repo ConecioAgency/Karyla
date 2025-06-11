@@ -88,7 +88,6 @@ export default function FAQ() {
             >
               <AccordionItemPremium
                 title={item.title}
-                defaultOpen={item.defaultOpen}
                 icon={item.icon}
               >
                 <p className="text-gray-600 text-base leading-relaxed">

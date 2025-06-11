@@ -74,11 +74,13 @@ export default function GuideTailles() {
           </table>
         </div>
         <div className="text-center mt-8">
-          <button
+          <Link
+            href="/path/to/your/guide-tailles.pdf"
+            download
             className="inline-block bg-gold-500 hover:bg-gold-600 text-white font-semibold px-6 py-3 rounded-full shadow transition-colors duration-300"
           >
             Télécharger le guide PDF complet
-          </button>
+          </Link>
         </div>
       </div>
     </div>
