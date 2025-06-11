@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { products, formatPrice } from "@/data/products";
 import Link from "next/link";
 import { useMiniCartDrawer, useToast } from "@/components/layout/MiniCartDrawer";
@@ -19,7 +19,7 @@ const categories = [
   { id: "ensemble", name: "Ensembles" },
 ];
 
-export default function Shop() {
+function ShopContent() {
   const { addItem } = useCart();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -183,5 +183,13 @@ export default function Shop() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Shop() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ShopContent />
+    </Suspense>
   );
 } 
