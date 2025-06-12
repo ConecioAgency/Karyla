@@ -69,7 +69,7 @@ export default function FAQ() {
           <p className="text-gray-600 text-lg max-w-xl mx-auto leading-relaxed">
             Retrouvez ici les réponses à vos questions les plus fréquentes sur nos bijoux, 
             la livraison, le paiement et le service client. Notre équipe Karyla vous 
-            accompagne à chaque étape de votre expérience d'achat premium.
+            accompagne à chaque étape de votre expérience d&apos;achat premium.
           </p>
         </motion.div>
 
@@ -88,6 +88,7 @@ export default function FAQ() {
             >
               <AccordionItemPremium
                 title={item.title}
+                defaultOpen={item.defaultOpen}
                 icon={item.icon}
               >
                 <p className="text-gray-600 text-base leading-relaxed">

@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import { Heart, ShoppingCart, Trash2, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Product } from "@/context/CartContext";
+import { formatPrice } from "@/data/products";
 
 // Données de test pour la wishlist
-const mockWishlistItems: any[] = [];
+const mockWishlistItems: Product[] = [];
 
 export default function WishlistPage() {
   const [navbarHeight, setNavbarHeight] = useState(0);
@@ -25,7 +27,7 @@ export default function WishlistPage() {
     return () => window.removeEventListener('resize', updateNavbarHeight);
   }, []);
 
-  const removeFromWishlist = (id: number) => {
+  const removeFromWishlist = (id: string) => {
     setWishlistItems(items => items.filter(item => item.id !== id));
   };
 
@@ -94,7 +96,7 @@ export default function WishlistPage() {
                     >
                       {item.name}
                     </Link>
-                    <p className="text-gold-600 font-medium mt-1">{item.price} MAD</p>
+                    <p className="text-gold-600 font-medium mt-1">{formatPrice(item.price, 'MAD')}</p>
                   </div>
                   <div className="flex items-center gap-4">
                     <button
@@ -120,4 +122,4 @@ export default function WishlistPage() {
       </div>
     </div>
   );
-} 
+}

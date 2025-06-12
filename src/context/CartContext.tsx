@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   price: number;
@@ -10,6 +10,9 @@ interface Product {
   quantity: number;
   size?: string;
   color?: string;
+  category?: string;
+  subcategory?: string;
+  slug?: string;
   reference?: string;
 }
 

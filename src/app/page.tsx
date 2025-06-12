@@ -11,10 +11,7 @@ import { SiteBenefits } from "@/components/ui/SiteBenefits";
 import { HeroCarousel } from "@/components/ui/HeroCarousel";
 import { Heart, ShoppingCart, Eye, Truck, RefreshCw, Shield, CreditCard, Wand2 } from "lucide-react";
 import { useState } from "react";
-import { AccordionItem } from "@/components/ui/Accordion";
 import { AccordionItemPremium } from "@/components/ui/AccordionItemPremium";
-import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 
 // Sélectionner les meilleures ventes et les nouveautés
 const bestSellers = products.filter(product => product.isBestSeller).slice(0, 3);
@@ -96,10 +93,9 @@ export default function Home() {
               >
                 <Link href={cat.href} className="block h-full w-full">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
-                  <Image
+                  <img
                     src={cat.image}
                     alt={cat.label}
-                    fill
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -132,11 +128,10 @@ export default function Home() {
               >
                 <Link href={`/shop/${product.id}`} className="block">
                   <div className="relative overflow-hidden rounded-lg">
-                    <Image
+                    <img
                       src={product.image}
                       alt={product.name}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {product.isNew && (
@@ -212,11 +207,10 @@ export default function Home() {
               >
                 <Link href={`/shop/${product.id}`} className="block">
                   <div className="relative overflow-hidden rounded-lg">
-                    <Image
+                    <img
                       src={product.image}
                       alt={product.name}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {product.isNew && (
@@ -304,7 +298,7 @@ export default function Home() {
                 required
               />
               <Button type="submit" className="bg-black text-white hover:bg-gray-800">
-                S'inscrire
+                S&apos;inscrire
               </Button>
             </motion.form>
           </div>
@@ -315,7 +309,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-2xl">
           <h2 className="text-4xl font-extrabold text-center mb-4 text-gold-700 font-serif tracking-tight">Foire aux questions</h2>
-          <p className="text-gray-500 text-center mb-10 text-lg max-w-xl mx-auto">Retrouvez ici les réponses à vos questions les plus fréquentes sur nos bijoux, la livraison, le paiement et le service client. Notre équipe Karyla vous accompagne à chaque étape de votre expérience d'achat premium.</p>
+          <p className="text-gray-500 text-center mb-10 text-lg max-w-xl mx-auto">Retrouvez ici les réponses à vos questions les plus fréquentes sur nos bijoux, la livraison, le paiement et le service client. Notre équipe Karyla vous accompagne à chaque étape de votre expérience d&apos;achat premium.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {faqItems.map((item, index) => (
               <motion.div
@@ -345,7 +339,7 @@ export default function Home() {
             <button className="absolute top-2 right-2 p-2 rounded-full bg-gray-100 hover:bg-gray-200" onClick={() => setPreviewImage(null)}>
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
             </button>
-            <Image src={previewImage} alt="Aperçu grand format" className="w-full h-auto max-h-[70vh] object-contain rounded-lg" fill />
+            <img src={previewImage} alt="Aperçu grand format" className="w-full h-auto max-h-[70vh] object-contain rounded-lg" />
           </div>
         </div>
       )}

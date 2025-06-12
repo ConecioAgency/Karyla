@@ -19,6 +19,14 @@ const categories = [
   { id: "ensemble", name: "Ensembles" },
 ];
 
+export default function Shop() {
+  return (
+    <Suspense>
+      <ShopContent />
+    </Suspense>
+  );
+}
+
 function ShopContent() {
   const { addItem } = useCart();
   const searchParams = useSearchParams();
@@ -183,13 +191,5 @@ function ShopContent() {
         )}
       </div>
     </div>
-  );
-}
-
-export default function Shop() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ShopContent />
-    </Suspense>
   );
 } 

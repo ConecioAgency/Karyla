@@ -8,7 +8,6 @@ import { CartProvider } from "@/context/CartContext";
 import { MiniCartDrawerProvider } from "@/components/layout/MiniCartDrawer";
 import { ToastProvider } from "@/components/layout/MiniCartDrawer";
 import { WhatsappChatButton } from "@/components/ui/WhatsappChatButton";
-import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +16,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>

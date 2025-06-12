@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 export default function GuideTailles() {
   const [navbarHeight, setNavbarHeight] = useState(0);
@@ -25,7 +24,7 @@ export default function GuideTailles() {
         <p className="text-gray-600 text-center mb-8 text-lg">Trouvez la taille idéale pour vos bagues, colliers et bracelets Karyla. Suivez nos conseils pour un ajustement parfait et consultez notre guide détaillé en PDF.</p>
         <div className="bg-gray-50 rounded-xl shadow-md p-6 mb-8">
           <h2 className="text-2xl font-bold text-gold-700 mb-4">Bagues</h2>
-          <p className="mb-3 text-gray-700">Pour mesurer votre taille de bague, utilisez un baguier ou mesurez le diamètre intérieur d'une bague qui vous va bien. Reportez-vous au tableau ci-dessous :</p>
+          <p className="mb-3 text-gray-700">Pour mesurer votre taille de bague, utilisez un baguier ou mesurez le diamètre intérieur d&apos;une bague qui vous va bien. Reportez-vous au tableau ci-dessous :</p>
           <table className="w-full text-sm border rounded-lg overflow-hidden bg-white mb-4">
             <thead>
               <tr className="bg-gold-50">
@@ -74,13 +73,11 @@ export default function GuideTailles() {
           </table>
         </div>
         <div className="text-center mt-8">
-          <Link
-            href="/path/to/your/guide-tailles.pdf"
-            download
+          <button
             className="inline-block bg-gold-500 hover:bg-gold-600 text-white font-semibold px-6 py-3 rounded-full shadow transition-colors duration-300"
           >
             Télécharger le guide PDF complet
-          </Link>
+          </button>
         </div>
       </div>
     </div>

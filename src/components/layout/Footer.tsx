@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-2xl font-serif text-gold-500 font-bold">Karyla</h3>
             <p className="text-gray-300">
-              Votre destination pour des bijoux d'exception. Chaque pièce raconte une histoire unique.
+              Votre destination pour des bijoux d&apos;exception. Chaque pièce raconte une histoire unique.
             </p>
             <div className="flex space-x-4">
               <motion.a
@@ -113,7 +113,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center space-x-3">
                 <MapPin className="text-gold-500" size={20} />
-                <span className="text-gray-300">Casablanca, Maroc</span>
+                <span className="text-gray-300">123 Rue du Luxe, Paris</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="text-gold-500" size={20} />

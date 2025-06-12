@@ -150,7 +150,7 @@ export default function AuthPage() {
               type="submit"
               className="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
             >
-              {isLogin ? "Se connecter" : "S'inscrire"}
+              {isLogin ? "Se connecter" : "S&apos;inscrire"}
             </button>
           </form>
 
@@ -162,7 +162,7 @@ export default function AuthPage() {
                   onClick={() => setIsLogin(false)}
                   className="text-gold-600 hover:text-gold-700 font-medium transition-colors duration-300"
                 >
-                  S'inscrire
+                  S&apos;inscrire
                 </button>
               </p>
             </div>
