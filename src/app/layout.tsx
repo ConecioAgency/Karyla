@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { MiniCartDrawerProvider } from "@/components/layout/MiniCartDrawer";
 import { ToastProvider } from "@/components/layout/MiniCartDrawer";
 import { WhatsappChatButton } from "@/components/ui/WhatsappChatButton";
@@ -21,16 +22,18 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ToastProvider>
           <MiniCartDrawerProvider>
-            <CartProvider>
-              <div className="min-h-screen flex flex-col">
-                <Navbar />
-                <main className="flex-grow">
-                  {children}
-                </main>
-                <Footer />
-                <WhatsappChatButton />
-              </div>
-            </CartProvider>
+            <AuthProvider>
+              <CartProvider>
+                <div className="min-h-screen flex flex-col">
+                  <Navbar />
+                  <main className="flex-grow">
+                    {children}
+                  </main>
+                  <Footer />
+                  <WhatsappChatButton />
+                </div>
+              </CartProvider>
+            </AuthProvider>
           </MiniCartDrawerProvider>
         </ToastProvider>
       </body>

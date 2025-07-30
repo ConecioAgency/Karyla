@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ShoppingCart, Menu, ChevronDown, User, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import MiniCartDrawer from "@/components/layout/MiniCartDrawer";
 import { SearchBar } from "@/components/ui/search";
 
@@ -66,6 +67,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { items } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
@@ -165,9 +167,32 @@ const Navbar = () => {
                   </motion.span>
                 )}
               </button>
-              <Link href="/auth" className="group" aria-label="Mon compte">
-                <User className="text-gray-600 group-hover:text-black transition-colors duration-300" size={20} />
-              </Link>
+              {isAuthenticated ? (
+                <div className="relative group">
+                  <button className="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors duration-300">
+                    <User size={20} />
+                    <span className="text-sm hidden lg:block">{user?.name}</span>
+                  </button>
+                  <div className="absolute top-full right-0 w-48 bg-white/95 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-lg z-30">
+                    <div className="p-4">
+                      <div className="mb-3 pb-3 border-b border-gray-100">
+                        <p className="text-sm font-medium text-black">{user?.name}</p>
+                        <p className="text-xs text-gray-500">{user?.email}</p>
+                      </div>
+                      <button
+                        onClick={logout}
+                        className="w-full text-left text-sm text-gray-600 hover:text-black transition-colors duration-300"
+                      >
+                        Se déconnecter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link href="/auth" className="group" aria-label="Mon compte">
+                  <User className="text-gray-600 group-hover:text-black transition-colors duration-300" size={20} />
+                </Link>
+              )}
             </div>
           </div>
         </div>
